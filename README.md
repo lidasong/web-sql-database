@@ -155,6 +155,7 @@
 ```
  `IndexDB()`
  + **创建一个非关系型数据库**
+ 
  ```javascript 
  /**
   * @description 使用IndexDB创建一个非关系型数据库
@@ -164,6 +165,7 @@
   * @return {[Object]}             IDBOpenDBRequest对象
   */```
  `create(dbName, version, upgradeneed)`
+ 
  ```javascript 
  /**
   * @description 创建数据存储空间
@@ -173,6 +175,7 @@
   */```
  `createStore(storeName, options)`
  + **手动封装的storeObject对象，方便操作store**
+ 
  ```javascript 
  /**
   * @description 封装的store对象，用于的storeObject的操作
@@ -183,6 +186,7 @@
   */```
  `StoreObject(db, storeName, store)`
  + **创建索引**
+ 
  ```javascript 
  /**
   * 使用第一次创建存储空间时候的store对象生成索引
@@ -191,6 +195,7 @@
   */```
  `createIndex(options)`
 + **为storeObject对象添加一条数据**
+ 
  ```javascript 
  /**
   * 向存储空间storeObject对象中添加一条数据
@@ -198,6 +203,7 @@
   */```
  `add(options)`
  + **获取storeObject对象中的一条数据**
+ 
  ```javascript 
  /**
   * 获取存储空间中的一条数据
@@ -207,6 +213,7 @@
   */```
  `get(key, options)`
  + **获取storeObject对象中的所有的数据**
+ 
  ```javascript 
  /**
   * 获取存储空间所有数据
@@ -215,6 +222,7 @@
   */```
  `getAll(options)`
  + **获取某个区间中的数据**
+ 
  ```javascript 
  /**
   * 获取存储空间区间中的数据
@@ -223,6 +231,7 @@
   */```
  `getRange(options)`
  + **封装的内部函数，简化重复函数**
+ 
  ```javascript 
  /**
   * 获取存储空间区间中的数据，内部的静态函数
@@ -232,6 +241,7 @@
   */```
  `_getSection(options, range)`
  + **删除storeObject中的数据**
+ 
  ```javascript 
  /**
   * 删除存储空间中的数据条目
@@ -241,6 +251,7 @@
   */```
  `remove(key, options)`
  + **更新storeObect对象中的数据**
+ 
  ```javascript 
  /**
   * 更新存储空间中的数据条目
@@ -249,6 +260,7 @@
   */```
  `put(options)`
  + **上述基本操作的装饰器函数，用于对一般操作的集成**
+ 
  ```javascript 
 /**
   * 所有基本操作的装饰器
