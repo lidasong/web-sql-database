@@ -1,6 +1,7 @@
 # web-sql-database
 
-+ ```javascript
++ 
+```javascript
 	/**
 	 * @param  {Object}
 	 * name {String} 数据库名称
@@ -13,7 +14,8 @@
 ```
 ` openDb(options) `
 
-+ ```javascript 
++ 
+```javascript 
 /**
 	 * @description 创建数据表
 	 * @param {String} tableName 要创建的数据表名称
@@ -30,7 +32,8 @@
 ```	
 ` createTable(tableName, options, success, fail) `
 
-+ ```javascript 
++ 
+```javascript 
 /**
 	 * @param {String} tableName 要创建的数据表名称
 	 * @param  {Object} data 插入的数据字段
@@ -47,7 +50,8 @@
 ```
 ` insert(tableName, data, success, fail) `
 
-+ ```javascript 
++ 
+```javascript 
 /**
 	 * @param {String} tableName 要创建的数据表名称
 	 * @param  {Array} options 要查询的字段
@@ -64,7 +68,8 @@
 ```
 ` query(tableName, options, success, fail) `
 
-+ ```javascript 
++ 
+```javascript 
 /**
 	 * @param {String} tableName 要创建的数据表名称
 	 * @param  {Object} options 要更新的字段以及对应的值
@@ -82,7 +87,8 @@
 ```
 ` update(tableName, options, where, success, fail) `
 
-+ ```javascript 
++ 
+```javascript 
 /**
 	 * @param {String} tableName 要创建的数据表名称
 	 * @param  {Object} 要删除的查找字段[单条数据]
@@ -98,7 +104,8 @@
 ```
 ` deleteItem(tableName, where, success, fail) `
 
-+ ```javascript 
++ 
+```javascript 
 /**
 	 * @param  {String} tableName 要删除的数据表名称
 	 * @param  {Function} 删除成功的回调
@@ -112,7 +119,8 @@
 ```
 ` dropTable(tableName, success, fail) `
 
-+ ```javascript 
++ 
+```javascript 
 /**
 	 * @description 自己手动执行的sql
 	 * @param  {String} sql语句
