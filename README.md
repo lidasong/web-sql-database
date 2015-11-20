@@ -154,6 +154,7 @@
  */
 ```
  `IndexDB()`
+
  + **创建一个非关系型数据库**
  
  ```javascript 
@@ -166,6 +167,7 @@
   */```
  `create(dbName, version, upgradeneed)`
  
+ + **创建一个数据存储空间**
  ```javascript 
  /**
   * @description 创建数据存储空间
@@ -174,6 +176,7 @@
   * @return {[Object]}           创建的store对象
   */```
  `createStore(storeName, options)`
+
  + **手动封装的storeObject对象，方便操作store**
  
  ```javascript 
@@ -185,6 +188,7 @@
   * @param {[Object]} store     第一步创建时的保留的store对象，用于生成index
   */```
  `StoreObject(db, storeName, store)`
+
  + **创建索引**
  
  ```javascript 
@@ -194,7 +198,8 @@
   * @return {[Undefined]}         undefined
   */```
  `createIndex(options)`
-+ **为storeObject对象添加一条数据**
+
+ + **为storeObject对象添加一条数据**
  
  ```javascript 
  /**
@@ -202,6 +207,7 @@
   * @param {[Object]} options 添加数据需要的参数(数据、回调)
   */```
  `add(options)`
+
  + **获取storeObject对象中的一条数据**
  
  ```javascript 
@@ -212,6 +218,7 @@
   * @return {[Undefined]}         异步调用一般是使用回调来调用，不适用直接返回数值
   */```
  `get(key, options)`
+
  + **获取storeObject对象中的所有的数据**
  
  ```javascript 
@@ -221,6 +228,7 @@
   * @return {[Undefined]}         异步调用一般是使用回调来调用，不适用直接返回数值
   */```
  `getAll(options)`
+
  + **获取某个区间中的数据**
  
  ```javascript 
@@ -230,6 +238,7 @@
   * @return {[Undefined]}         异步调用一般是使用回调来调用，不适用直接返回数值
   */```
  `getRange(options)`
+
  + **封装的内部函数，简化重复函数**
  
  ```javascript 
@@ -240,6 +249,7 @@
   * @return {[Undefined]}         异步调用一般是使用回调来调用，不适用直接返回数值
   */```
  `_getSection(options, range)`
+
  + **删除storeObject中的数据**
  
  ```javascript 
@@ -250,6 +260,7 @@
   * @return {[Undefined]}         
   */```
  `remove(key, options)`
+
  + **更新storeObect对象中的数据**
  
  ```javascript 
@@ -259,6 +270,7 @@
   * @return {[Undefined]}         
   */```
  `put(options)`
+
  + **上述基本操作的装饰器函数，用于对一般操作的集成**
  
  ```javascript 
