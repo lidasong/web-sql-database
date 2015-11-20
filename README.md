@@ -1,6 +1,7 @@
 # web-sql-database
 
-+ /**
++ ```javascript
+	/**
 	 * @param  {Object}
 	 * name {String} 数据库名称
 	 * version {String} 数据库版本号
@@ -9,10 +10,11 @@
 	 * callback {Function} 创建或者打开数据库成功的回调
 	 * @return {Object} 创建或者打开的数据库对象
 	 */
-	
+```
 ` openDb(options) `
 
-+ /**
++ ```javascript 
+/**
 	 * @description 创建数据表
 	 * @param {String} tableName 要创建的数据表名称
 	 * @param {Object} options 描述字段
@@ -25,10 +27,11 @@
 	 * id        | name 
 	 * -----------------------
 	 */
-	
+```	
 ` createTable(tableName, options, success, fail) `
 
-+ /**
++ ```javascript 
+/**
 	 * @param {String} tableName 要创建的数据表名称
 	 * @param  {Object} data 插入的数据字段
 	 * @param {Function} success 成功的回调
@@ -41,10 +44,11 @@
 	 * 1		 | author
 	 * ----------------------- 
 	 */
-
+```
 ` insert(tableName, data, success, fail) `
 
-+ /**
++ ```javascript 
+/**
 	 * @param {String} tableName 要创建的数据表名称
 	 * @param  {Array} options 要查询的字段
 	 * @param {Function} success 成功的回调
@@ -57,10 +61,11 @@
 	 * 1		 
 	 * -----------
 	 */
-
+```
 ` query(tableName, options, success, fail) `
 
-+ /**
++ ```javascript 
+/**
 	 * @param {String} tableName 要创建的数据表名称
 	 * @param  {Object} options 要更新的字段以及对应的值
 	 * @param  {Object} 要更新的查找字段[单条数据]
@@ -74,10 +79,11 @@
 	 * 1		 | AUTHOR
 	 * -----------------------  
 	 */
-
+```
 ` update(tableName, options, where, success, fail) `
 
-+ /**
++ ```javascript 
+/**
 	 * @param {String} tableName 要创建的数据表名称
 	 * @param  {Object} 要删除的查找字段[单条数据]
 	 * @param {Function} success 成功的回调
@@ -89,10 +95,11 @@
 	 * id        | name 
 	 * ----------------------- 
 	 */
-
+```
 ` deleteItem(tableName, where, success, fail) `
 
-+ /**
++ ```javascript 
+/**
 	 * @param  {String} tableName 要删除的数据表名称
 	 * @param  {Function} 删除成功的回调
 	 * @param  {Function} 删除失败后的回调
@@ -102,10 +109,11 @@
 	 * -------------------
 	 * -------------------
 	 */
-
+```
 ` dropTable(tableName, success, fail) `
 
-+ /**
++ ```javascript 
+/**
 	 * @description 自己手动执行的sql
 	 * @param  {String} sql语句
 	 * @param  {Array||String} 需要的数据
@@ -119,5 +127,5 @@
 	 * id 		   | name
 	 * -----------------------
 	 */
-
+```
 ` manualTransaction(sql, values, success, fail) `
