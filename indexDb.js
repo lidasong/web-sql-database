@@ -52,6 +52,13 @@
         this.db = db;
     }
 
+    StoreObject.prototype = {
+    	add:add,
+    	get:get,
+    	put:put,
+    	delete:delete
+    };
+
     function add(options) {
         var transction, storeName,store,request;
         storeName = [this.storeName];
@@ -62,14 +69,35 @@
         request.onerror = options['error'].call(this);
     }
 
-    function get(itemName,options){
+    function get(key,options){
     	var transaction,storeName,store,request;
     	storeName= [this.storeName];
     	transaction = this.db.transaction(storeName,'readonly');
     	store = transaction.objectStore(this.storeName);
-    	request = store.get(itemName);
-    	request.onsuccess = options['success'];
+    	if(options.index){
+    		request = store.index(options.index).get(key);
+    	}else{
+    		request = store.get(key);
+    	}
+    	request.onsuccess = function(){
+    		options['success'].call(null,request.result);
+    	}
     	request.onerror = options['error'];
+    }
+
+    function getAll(options){
+    	var transaction,storeName,store,result = [];
+    	storeName = [this.storeName];
+    	transaction = this.db.transaction(storeName,'readonly');
+    	store = transaction.objectStore(this.storeName);
+    	store.openCursor().onsuccess = function(evt){
+    		var cursor = evt.target.result;
+    		if(cursor){
+    			result.push(cursor);
+    		}else{
+    			options['success'].call(null,result)
+    		}
+    	};
     }
 
     function delete(key,options){
@@ -78,9 +106,20 @@
 		transaction = this.db.transaction(storeName,'readwrite');
 		store = transaction.objectStore(this.storeName);
 		request = store.delete(key);
-		request.onsuccess = options['success'];
-		request.onerror = options['error'];
+		request.onsuccess = options['success']();
+		request.onerror = options['error']();
     }
+
+    function put (key,options) {
+    	var transaction,storeName,store,request;
+    	storeName= [this.storeName];
+    	transaction = this.db.transaction(storeName,'readwrite');
+    	store = transaction.objectStore(this.storeName);
+    	request = store.put(options.data,key);
+    	request.onsuccess = options['success'];
+    	request.onerror = options['error'];
+    }
+
 
     function operateStore(options){
     	var transction, storeName,store,request,type,pattern;
@@ -94,10 +133,17 @@
 		    	request = store.add(options.data);
 		    	break;
     		case 'get':
-    			request = store.get(options.itemName);
+    			if(options.index){
+    				request = store.index(options.index).get(options.key);
+    			}else{
+    				request = store.get(options.key);
+    			}
     			break;
     		case 'delete':
     			request = store.delete(options.key);
+    			break;
+    		case 'put':
+    			request = store.put(options.data,options.key);
     			break;
     		default:
     			break;
