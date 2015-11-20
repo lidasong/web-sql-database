@@ -132,7 +132,8 @@
 	 * @param  {Function} 执行失败的回调
 	 * @return {Undefined} 无返回结果
 	 * @example
-	 * var sql = 'create table if not exists student (id INTEGER NOT NULL PRIMARY KEY,name TEXT)';
+	 * var sql = 'create table if not exists student 
+	 * (id INTEGER NOT NULL PRIMARY KEY,name TEXT)';
 	 * manualTransaction(sql);
 	 * -----------------------
 	 * id 		   | name
@@ -140,3 +141,118 @@
 	 */
 ```
 ` manualTransaction(sql, values, success, fail) `
+
+# web-nosql-indexedDB
+
+## 非关系型数据库(IndexedDB)接口说明
+
++ **手动封装的IndexedDB构造函数**
+```javascript 
+/**
+ * @description IndexedDB的构造函数接口
+ * @constructor IndexDB 
+ */
+```
+ `IndexDB()`
+ + **创建一个非关系型数据库**
+ ```javascript 
+ /**
+  * @description 使用IndexDB创建一个非关系型数据库
+  * @param  {[String]} dbName      数据库名称
+  * @param  {[String||Number]} version     版本号
+  * @param  {[Function]} upgradeneed 监听第一次创建的回调函数(创建存储空间Store)
+  * @return {[Object]}             IDBOpenDBRequest对象
+  */```
+ `create(dbName, version, upgradeneed)`
+ ```javascript 
+ /**
+  * @description 创建数据存储空间
+  * @param  {[String]} storeName 数据存储空间的名称
+  * @param  {[Object]} options   创建需要的参数(比如回调，keyPath)
+  * @return {[Object]}           创建的store对象
+  */```
+ `createStore(storeName, options)`
+ + **手动封装的storeObject对象，方便操作store**
+ ```javascript 
+ /**
+  * @description 封装的store对象，用于的storeObject的操作
+  * @constructor 存储空间的构造函数
+  * @param {[Object]} db        上一步创建好的非关系型数据库
+  * @param {[String]} storeName 要创建的存储空间store的名称
+  * @param {[Object]} store     第一步创建时的保留的store对象，用于生成index
+  */```
+ `StoreObject(db, storeName, store)`
+ + **创建索引**
+ ```javascript 
+ /**
+  * 使用第一次创建存储空间时候的store对象生成索引
+  * @param  {[Object]} options 创建索引需要的参数(索引名、索引值)
+  * @return {[Undefined]}         undefined
+  */```
+ `createIndex(options)`
++ **为storeObject对象添加一条数据**
+ ```javascript 
+ /**
+  * 向存储空间storeObject对象中添加一条数据
+  * @param {[Object]} options 添加数据需要的参数(数据、回调)
+  */```
+ `add(options)`
+ + **获取storeObject对象中的一条数据**
+ ```javascript 
+ /**
+  * 获取存储空间中的一条数据
+  * @param  {[String||Number]} key     查询所需要的keypath
+  * @param  {[Object]} options 查询中的参数对象
+  * @return {[Undefined]}         异步调用一般是使用回调来调用，不适用直接返回数值
+  */```
+ `get(key, options)`
+ + **获取storeObject对象中的所有的数据**
+ ```javascript 
+ /**
+  * 获取存储空间所有数据
+  * @param  {[Object]} options 查询中的参数对象
+  * @return {[Undefined]}         异步调用一般是使用回调来调用，不适用直接返回数值
+  */```
+ `getAll(options)`
+ + **获取某个区间中的数据**
+ ```javascript 
+ /**
+  * 获取存储空间区间中的数据
+  * @param  {[Object]} options 查询中的参数对象
+  * @return {[Undefined]}         异步调用一般是使用回调来调用，不适用直接返回数值
+  */```
+ `getRange(options)`
+ + **封装的内部函数，简化重复函数**
+ ```javascript 
+ /**
+  * 获取存储空间区间中的数据，内部的静态函数
+  * @param  {[Object]} options 查询中的参数对象】
+  * @param {Object} range IDBKeyRange区间对象
+  * @return {[Undefined]}         异步调用一般是使用回调来调用，不适用直接返回数值
+  */```
+ `_getSection(options, range)`
+ + **删除storeObject中的数据**
+ ```javascript 
+ /**
+  * 删除存储空间中的数据条目
+  * @param  {[String|Number]} key     keypath查询需要的key值
+  * @param  {[Object]} options 删除的回调对象
+  * @return {[Undefined]}         
+  */```
+ `remove(key, options)`
+ + **更新storeObect对象中的数据**
+ ```javascript 
+ /**
+  * 更新存储空间中的数据条目
+  * @param  {[Object]} options 更新的回调对象以及数据
+  * @return {[Undefined]}         
+  */```
+ `put(options)`
+ + **上述基本操作的装饰器函数，用于对一般操作的集成**
+ ```javascript 
+/**
+  * 所有基本操作的装饰器
+  * @param  {[Object]} options 操作存储空间的所需对象
+  * @return {[Undefined]}         
+  */```
+`operateStore(options)`
